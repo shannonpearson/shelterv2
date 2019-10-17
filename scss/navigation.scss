@@ -1,0 +1,36 @@
+.app {
+  background-image: url('../src/resources/background.png');
+  opacity: 0.8;
+  min-height: 100vh;
+}
+
+.header {
+  border-bottom: 1px solid #c9c9c9;
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.footer {
+  border-top: 1px solid #c9c9c9;
+  padding-top: 0;
+  padding-bottom: 0;
+  .navbar-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .facebook-button {
+    margin-left: 80px;
+  }
+}
+
+
+.container {
+  background-color: #fcfcfc;
+  margin-top: 39px;
+  min-height: 100vh;
+  padding: 50px 200px;
+}

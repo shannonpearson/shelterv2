@@ -1,19 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Header from './components/Header'
-import '../scss/app.scss'
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
 
-class HelloMessage extends React.Component {
-    render() {
-        return <div>
-            <Header/>
-            <div className="container">
-                <h1>Hello</h1>
-            </div>
-        </div>
-    }
-}
+import 'bootstrap/dist/css/bootstrap.css';
+import '../scss/main.scss';
 
-let App = document.getElementById("app");
+import RouterComponent from './router';
+import Footer from './components/Footer';
 
-ReactDOM.render(<HelloMessage  />, App);
+const App = () => (
+  <div className="app">
+    <RouterComponent />
+    <Footer />
+  </div>
+);
+
+export default App;

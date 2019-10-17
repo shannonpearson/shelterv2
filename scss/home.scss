@@ -1,0 +1,16 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  .home-row {
+    display: flex;
+    justify-content: center;
+  }
+  img {
+    max-width: 80%;
+    margin: 30px 0;
+  }
+  .home-header {
+    margin-bottom: 20px;
+  }
+}
