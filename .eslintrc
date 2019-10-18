@@ -1,7 +1,16 @@
 {
+  "extends": ["airbnb", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "plugins": ["jest", "import",  "react", "react-hooks"],
   "rules": {
     "semi": ["error", "always"],
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/static-property-placement": "off"
   },
-  "extends": "airbnb"
 }
