@@ -5,7 +5,13 @@ const express = require('express');
 const bundler = new Bundler('./index.html');
 const app = express();
 
-app.use('/', proxy({ target: 'http://localhost:3000' }));
+app.use('/api', proxy({
+  target: 'http://localhost:3000',
+  pathRewrite: {
+    '^/api': '',
+  },
+  changeOrigin: true,
+}));
 
 app.use(bundler.middleware());
 
