@@ -1,0 +1,32 @@
+.adopt-container {
+  display: flex;
+
+  .pets-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .pet-card-image-container {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 100%;
+    }
+
+    .pet-card-image {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      object-fit: cover;
+    }
+
+    p {
+      margin-bottom: 0px;
+      margin-top: 5px;
+      font-size: .8rem
+    }
+  }
+}

@@ -24,7 +24,6 @@ app.use('/auth', routes.auth);
 app.use('/pets', routes.pets);
 
 app.get('*', (req, res) => {
-  console.log('CATCHALL');
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 

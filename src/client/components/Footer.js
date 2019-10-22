@@ -28,7 +28,7 @@ const Footer = () => (
     <Navbar.Text className="col-xs-12 col-sm-4">
       Shelter Hours:
       <br />
-      Monday-Saturday: 8am-5pm
+      Monday-Saturday: 8am-3pm
       <br />
       Sunday: closed
     </Navbar.Text>

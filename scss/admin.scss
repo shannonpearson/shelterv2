@@ -12,6 +12,16 @@
       margin-bottom: 10px;
     }
   }
+  .button-row {
+    button {
+      margin: 20px auto;
+    }
+  }
+}
+.admin-table-container {
+  .action-button {
+    margin: 0px 5px;
+  }
 }
 .new-pet-form {
   .input-container {

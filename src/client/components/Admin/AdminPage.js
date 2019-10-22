@@ -56,7 +56,7 @@ export default class AdminPage extends PureComponent {
         <div className="row">
           <AdminTable pets={allPets} onDelete={this.handleDelete} onEdit={this.handleEdit} />
         </div>
-        <div className="row">
+        <div className="row button-row">
           <Button className="new-pet-button" onClick={() => this.setState({ showModal: true })}>Add Pet</Button>
         </div>
         <Modal

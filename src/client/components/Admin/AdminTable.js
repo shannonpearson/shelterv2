@@ -37,10 +37,10 @@ export default class AdminTable extends PureComponent {
           <td>{pet.age || ''}</td>
           <td>{pet.breed || ''}</td>
           <td>
-            <Button onClick={() => this.handleDelete(pet, i)}>
+            <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
+            <Button className="action-button" onClick={() => this.handleDelete(pet, i)}>
               <FontAwesomeIcon icon={faTrash} />
             </Button>
-            <Button onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
           </td>
         </tr>,
       );
@@ -50,7 +50,7 @@ export default class AdminTable extends PureComponent {
 
   render() {
     return (
-      <div className="col-sm-10 col-sm-offset-1 table-container">
+      <div className="col-sm-12 admin-table-container">
         <Table bordered>
           <thead>
             <tr>

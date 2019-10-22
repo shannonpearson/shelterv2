@@ -34,7 +34,6 @@ router.post('/pets', async (req, res) => {
 });
 
 router.put('/pets/:id', async (req, res) => {
-  console.log('PUT');
   try {
     const { id } = req.params;
     const { pet = {} } = req.body;
