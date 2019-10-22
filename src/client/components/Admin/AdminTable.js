@@ -31,7 +31,7 @@ export default class AdminTable extends PureComponent {
       const image = `data:image/jpeg;base64,${pet.image}`;
       petRows.push(
         <tr key={pet._id}>
-          <td>{image <img src={image} width="80px" alt="pet" />}</td>
+          <td>{image && <img src={image} width="80px" alt="pet" />}</td>
           <td>{pet.name || ''}</td>
           <td>{pet.sex || ''}</td>
           <td>{pet.age || ''}</td>
