@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import Login from './Login';
+import AdminPage from './AdminPage';
+import authenticatedFetch from '../../fetchUtils/authenticatedFetch';
 
 
 export default class AdminContainer extends PureComponent {
@@ -14,27 +16,14 @@ export default class AdminContainer extends PureComponent {
     this.checkAuthentication();
   }
 
-  checkAuthentication = () => {
-    const token = window.localStorage.getItem('id_token');
-
-    if (token) {
-      return fetch('/api/admin/access', { method: 'GET', headers: { Authorization: `Bearer ${token}` } })
-        .then((res) => res.json())
-        .then((response) => {
-          if (response.success) {
-            return this.setState({ isAuthenticated: true });
-          }
-          return null;
-        });
-    }
-    return null;
-  }
+  checkAuthentication = () => authenticatedFetch('/admin/access')
+    .then(({ success }) => success && this.setState({ isAuthenticated: true }))
 
   render() {
     const { isAuthenticated } = this.state;
     return (
       <div className="container admin-container">
-        {isAuthenticated ? <div className="authenticated-placeholder" /> : <Login onSuccess={this.checkAuthentication} />}
+        {isAuthenticated ? <AdminPage /> : <Login onSuccess={this.checkAuthentication} />}
       </div>
     );
   }

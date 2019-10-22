@@ -2,6 +2,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import PropTypes from 'prop-types';
+import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
 
 const CURRENCY = 'USD';
 
@@ -17,7 +18,7 @@ const errorPayment = () => {
 
 const onToken = (amount, description) => (token) => {
   console.log('ON TOKEN');
-  return fetch('/api/donate/stripe', {
+  return unauthenticatedFetch('/donate/stripe', {
     method: 'POST',
     body: {
       description,

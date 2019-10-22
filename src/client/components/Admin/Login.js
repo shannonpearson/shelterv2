@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
+import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
 
 class Login extends PureComponent {
   static propTypes = {
@@ -29,18 +30,10 @@ class Login extends PureComponent {
     e.preventDefault();
     const { username, password } = this.state;
     const { onSuccess } = this.props;
-    return fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      mode: 'cors',
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        if (response.success && response.token) {
-          window.localStorage.setItem('id_token', response.token);
+    return unauthenticatedFetch('/auth/login', { method: 'POST', body: { username, password } })
+      .then(({ success, token }) => {
+        if (success && token) {
+          window.localStorage.setItem('id_token', token);
           return onSuccess();
         }
         return this.setState({ errorMessage: 'Invalid username or password' });
