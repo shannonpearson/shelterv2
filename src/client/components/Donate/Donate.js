@@ -15,7 +15,7 @@ function Donate() {
 
   return (
     <div className="container donate-container">
-      <div className="row">
+      <div className="row donate-intro">
         Thank you so much for considering a donation to the East Haven Animal Shelter. Your
         donations ehable us to provide the best medical care to our sick or injured animals, giving
         them a second chance at finding a forever home.

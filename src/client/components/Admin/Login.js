@@ -31,10 +31,13 @@ class Login extends PureComponent {
     const { username, password } = this.state;
     const { onSuccess } = this.props;
     return unauthenticatedFetch('/auth/login', { method: 'POST', body: { username, password } })
-      .then(({ success, token }) => {
+      .then(({ success, token, message }) => {
         if (success && token) {
           window.localStorage.setItem('id_token', token);
           return onSuccess();
+        }
+        if (!success && message) {
+          return this.setState({ errorMessage: `Error logging in: ${message}` });
         }
         return this.setState({ errorMessage: 'Invalid username or password' });
       });

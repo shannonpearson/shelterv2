@@ -15,6 +15,7 @@ const Navigation = () => (
           Donate
         </Link>
         <Link to="adopt" className="nav-link">Adopt</Link>
+        <Link to="blog" className="nav-link">Events & Blog</Link>
         <Link to="admin" className="nav-link"> Admin </Link>
       </Nav>
     </Navbar.Collapse>

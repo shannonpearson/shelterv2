@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
       if (!err && valid) {
         return jwt.sign({ username }, secret, { expiresIn: '24h' }, (jwtError, token) => {
           if (jwtError) {
-            return res.status(403).send({ success: false, message: 'Failed to sign token' });
+            return res.status(403).send({ success: false, message: 'Failed to authenticate' });
           }
           return res.status(200).send({ success: true, token, message: 'Successfully authenticated with token' });
         });
