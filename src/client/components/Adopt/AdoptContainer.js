@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
 import PetCard from './PetCard';
 
@@ -8,12 +8,13 @@ export default class AdoptContainer extends Component {
     super(props);
     this.state = {
       pets: [],
+      loading: true,
     };
   }
 
   componentDidMount() {
     return unauthenticatedFetch('/pets/all')
-      .then(({ success, pets }) => success && pets && this.setState({ pets }));
+      .then(({ pets }) => this.setState({ pets, loading: false }));
   }
 
   _renderPanel = () => (
@@ -61,11 +62,16 @@ export default class AdoptContainer extends Component {
   )
 
   render() {
-    const { pets } = this.state;
+    const { pets, loading } = this.state;
     return (
       <div className="container adopt-container">
         <div className="pets-section col-xs-12 col-sm-9">
-          {pets.length ? this._renderPetPanels(pets) : this._renderNoPets()}
+          {!!loading && (
+          <Spinner animation="border" role="status" className="loading-spinner">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+          )}
+          {!loading && (pets.length ? this._renderPetPanels(pets) : this._renderNoPets())}
         </div>
         <div className="faq-panel col-xs-12 col-sm-3 pull-right">
           {this._renderPanel()}
