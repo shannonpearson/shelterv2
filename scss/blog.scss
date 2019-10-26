@@ -1,0 +1,16 @@
+.blog-page-content {
+  display: flex;
+}
+
+.event-display-container {
+  .event-date {
+    font-weight: 700;
+  }
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
