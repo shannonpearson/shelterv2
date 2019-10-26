@@ -4,6 +4,7 @@ import React from 'react';
 import '../../scss/main.scss';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import RouterComponent from './Router';
 import Footer from './components/Footer';

@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Donate from './components/Donate/Donate';
 import Navigation from './components/Navigation';
 import AdoptContainer from './components/Adopt/AdoptContainer';
+import BlogPage from './components/Blog/BlogPage';
 import AdminContainer from './components/Admin/AdminContainer';
 
 const RouterComponent = () => (
@@ -14,6 +15,7 @@ const RouterComponent = () => (
       <Route exact path="/home" component={Home} />
       <Route exact path="/donate" component={Donate} />
       <Route exact path="/adopt" component={AdoptContainer} />
+      <Route exact path="/blog" component={BlogPage} />
       <Route exact path="/admin" component={AdminContainer} />
     </Switch>
   </Router>

@@ -22,6 +22,8 @@ app.use('/donate', routes.donate);
 app.use('/admin', requiresAuthentication, routes.admin);
 app.use('/auth', routes.auth);
 app.use('/pets', routes.pets);
+app.use('/events', routes.events);
+app.use('/blogs', routes.blogs);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
