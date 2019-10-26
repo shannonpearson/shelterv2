@@ -1,72 +1,79 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+import cns from 'classnames';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-export default class AdminTable extends PureComponent {
-  static propTypes = {
-    onDelete: PropTypes.func,
-    onEdit: PropTypes.func,
-    pets: PropTypes.array,
-  }
+const AdminTable = (props) => {
+  const {
+    tableProperties, className, onEdit, data, onDelete,
+  } = props;
 
-  static defaultProps = {
-    onDelete: () => {},
-    onEdit: () => {},
-    pets: [],
-  }
-
-  handleDelete = ({ name, _id }) => {
-    if (window.confirm(`Are you sure you want to delete ${name}'s profile?`)) {
-      return this.props.onDelete(_id);
+  const handleDelete = (id, i) => {
+    if (window.confirm('Are you sure you want to delete?')) {
+      return onDelete(id, i);
     }
     return null;
-  }
+  };
 
-  _renderRows() {
-    const { pets = [], onEdit } = this.props;
-    const petRows = [];
-    pets.forEach((pet, i) => {
-      const image = `data:image/jpeg;base64,${pet.image}`;
-      petRows.push(
-        <tr key={pet._id}>
-          <td>{image && <img src={image} width="80px" alt="pet" />}</td>
-          <td>{pet.name || ''}</td>
-          <td>{pet.sex || ''}</td>
-          <td>{pet.age || ''}</td>
-          <td>{pet.breed || ''}</td>
-          <td>
-            <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
-            <Button className="action-button" onClick={() => this.handleDelete(pet, i)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </Button>
+  const _renderTableRows = () => data.map((item, i) => (
+    <tr key={item._id}>
+      {tableProperties.map((prop) => {
+        if (prop === 'image' && item.image) {
+          const image = `data:image/jpeg;base64,${item.image}`;
+          return <td key={`${item._id}-${prop}`}>{image && <img src={image} width="80px" alt="thumbnail" />}</td>;
+        }
+        if (prop.toLowerCase().endsWith('date')) {
+          const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
+          return <td key={`${item._id}-${prop}`}>{date}</td>;
+        }
+        return (
+          <td key={`${item._id}-${prop}`}>
+            {item[prop] || ''}
           </td>
-        </tr>,
-      );
-    });
-    return petRows;
-  }
+        );
+      })}
+      <td>
+        <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
+        <Button className="action-button" onClick={() => handleDelete(item._id, i)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
+      </td>
+    </tr>
+  ));
 
-  render() {
-    return (
-      <div className="col-sm-12 admin-table-container">
-        <Table bordered>
-          <thead>
-            <tr>
-              <th>Photo</th>
-              <th>Name</th>
-              <th>Sex</th>
-              <th>Age</th>
-              <th>Breed</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this._renderRows()}
-          </tbody>
-        </Table>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={cns('col-sm-12', 'admin-table-container', className)}>
+      <Table bordered>
+        <thead>
+          <tr>
+            {tableProperties.map((columnName) => <th key={columnName}>{columnName.toUpperCase()}</th>)}
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {_renderTableRows()}
+        </tbody>
+      </Table>
+    </div>
+  );
+};
+AdminTable.propTypes = {
+  onDelete: PropTypes.func,
+  onEdit: PropTypes.func,
+  tableProperties: PropTypes.array,
+  data: PropTypes.array,
+  className: PropTypes.string,
+};
+
+AdminTable.defaultProps = {
+  onDelete: () => {},
+  onEdit: () => {},
+  tableProperties: [],
+  data: [],
+  className: '',
+};
+
+export default AdminTable;

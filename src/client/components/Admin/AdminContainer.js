@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
+import { Spinner } from 'react-bootstrap';
 import Login from './Login';
-import AdminPage from './AdminPage';
+import AdminTabsComponent from './AdminTabsComponent';
 import authenticatedFetch from '../../fetchUtils/authenticatedFetch';
 
 
@@ -9,6 +10,7 @@ export default class AdminContainer extends PureComponent {
     super(props);
     this.state = {
       isAuthenticated: false,
+      loading: true,
     };
   }
 
@@ -17,13 +19,21 @@ export default class AdminContainer extends PureComponent {
   }
 
   checkAuthentication = () => authenticatedFetch('/admin/access')
-    .then(({ success }) => success && this.setState({ isAuthenticated: true }))
+    .then(({ success }) => this.setState({ isAuthenticated: !!success, loading: false }))
 
   render() {
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated, loading } = this.state;
     return (
       <div className="container admin-container">
-        {isAuthenticated ? <AdminPage /> : <Login onSuccess={this.checkAuthentication} />}
+        {!!loading && (
+        <Spinner animation="border" role="status" className="loading-spinner">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+        )}
+        {!loading
+          && (isAuthenticated
+            ? <AdminTabsComponent />
+            : <Login onSuccess={this.checkAuthentication} />)}
       </div>
     );
   }

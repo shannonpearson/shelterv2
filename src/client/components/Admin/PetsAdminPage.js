@@ -11,8 +11,9 @@ export default class AdminPage extends PureComponent {
     this.state = {
       allPets: [],
       showModal: false,
-      editIndex: false,
+      editIndex: null,
     };
+    this.tableProperties = ['image', 'name', 'sex', 'age', 'breed'];
   }
 
   componentDidMount() {
@@ -54,17 +55,23 @@ export default class AdminPage extends PureComponent {
     return (
       <div className="admin-page-container">
         <div className="row">
-          <AdminTable pets={allPets} onDelete={this.handleDelete} onEdit={this.handleEdit} />
+          <AdminTable
+            data={allPets}
+            tableProperties={this.tableProperties}
+            onDelete={this.handleDelete}
+            onEdit={this.handleEdit}
+            className="pets-admin-table"
+          />
         </div>
         <div className="row button-row">
           <Button className="new-pet-button" onClick={() => this.setState({ showModal: true })}>Add Pet</Button>
         </div>
         <Modal
           show={showModal}
-          onHide={() => this.setState({ editIndex: false })}
+          onHide={() => this.setState({ editIndex: false, showModal: false })}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Add/Edit Pet</Modal.Title>
+            <Modal.Title>{editIndex ? 'Edit Pet' : 'Add New Pet'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="new-pet-form">

@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const { ObjectId } = mongoose.Schema.Types;
-
 const petSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -35,7 +33,7 @@ const petSchema = new mongoose.Schema({
 });
 
 petSchema.statics.getAll = async function () {
-  const pets = await this.find({});
+  const pets = await this.find({}).sort({ createdOn: -1 });
   return pets;
 };
 

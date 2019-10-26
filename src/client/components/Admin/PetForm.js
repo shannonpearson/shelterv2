@@ -59,10 +59,13 @@ export default class PetForm extends PureComponent {
     const { onSave, onSaveEdit, petToEdit } = this.props;
     const { file } = this.state;
     if (petToEdit) {
-      return onSaveEdit({ ...petToEdit, ...values, image: file });
+      return onSaveEdit({ ...petToEdit, ...values, image: file }).then(() => {
+        actions.setSubmitting(false);
+        actions.resetForm();
+      });
     }
-    actions.setSubmitting(false);
     return onSave({ ...values, image: file }).then(() => {
+      actions.setSubmitting(false);
       actions.resetForm();
     });
   }
@@ -87,9 +90,6 @@ export default class PetForm extends PureComponent {
                   className="col-sm-4 col-sm-offset-5"
                   onChange={this.handlePhotoUpload}
                 />
-                {/* if new file, show file (and replace in pet) */}
-                {/* if no new file and pet image, show pet image */}
-                {/* else hide image */}
                 {!!file && <img className={cns('image-preview')} src={`data:image/jpeg;base64,${file}`} alt="upload preview" />}
               </label>
             </form>
@@ -158,7 +158,7 @@ export default class PetForm extends PureComponent {
                   id="bio"
                 />
               </div>
-              {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+              {/* {props.errors.name && <div id="feedback">{props.errors.name}</div>} */}
               <Button variant="primary" type="submit">
               Save Changes
               </Button>
