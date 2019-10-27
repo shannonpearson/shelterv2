@@ -48,6 +48,7 @@ export default class BlogsAdminPage extends PureComponent {
 
   render() {
     const { showModal, blogs, editIndex } = this.state;
+
     return (
       <div className="blogs-admin-container">
         <div className="row">

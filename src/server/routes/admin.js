@@ -81,10 +81,10 @@ router.delete('/pets/:id', async (req, res) => {
 router.post('/blogs', (req, res) => {
   try {
     const {
-      title, description, image = null,
+      title, body, image = null,
     } = req.body.blog;
     const newBlogObject = {
-      title, description, image,
+      title, body, image,
     };
     const blog = new Blog(newBlogObject);
 

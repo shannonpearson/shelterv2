@@ -25,8 +25,9 @@ export default class BlogForm extends PureComponent {
 
   constructor(props) {
     super(props);
+    const richTextBody = props.blogToEdit && props.blogToEdit.body ? RichTextEditor.createValueFromString(props.blogToEdit.body, 'html') : RichTextEditor.createEmptyValue();
     this.state = {
-      body: RichTextEditor.createEmptyValue(),
+      body: richTextBody,
     };
   }
 
@@ -44,10 +45,11 @@ export default class BlogForm extends PureComponent {
 
   handleSubmit = (values, actions) => {
     const { onSave, onSaveEdit, blogToEdit } = this.props;
-    const { startDate, endDate } = this.state;
-    const blogObject = { ...values, startDate, endDate };
+    const { body } = this.state;
+    const blogObject = { ...values, body: body.toString('html') };
+    console.log(blogObject);
     if (blogToEdit) {
-      return onSaveEdit({ ...blogObject, ...values }).then(() => {
+      return onSaveEdit({ ...blogObject }).then(() => {
         actions.setSubmitting(false);
         actions.resetForm();
       });
@@ -59,7 +61,8 @@ export default class BlogForm extends PureComponent {
   }
 
   render() {
-    const { blogToEdit } = this.state;
+    const { blogToEdit } = this.props;
+
     return (
       <Formik
         initialValues={blogToEdit ? { ...blogToEdit } : { ...initialValues }}
@@ -73,7 +76,7 @@ export default class BlogForm extends PureComponent {
               type="text"
               onChange={props.handleChange}
               onBlur={props.handleBlur}
-              value={props.values.body}
+              value={props.values.title}
               name="title"
             />
             <div className="label-text">
