@@ -74,7 +74,7 @@ export default class PetForm extends PureComponent {
                   id="avatar"
                   name="avatar"
                   accept="image/*"
-                  className="col-sm-4 col-sm-offset-5"
+                  className="col-sm-6"
                   onChange={this.handlePhotoUpload}
                 />
                 {!!file && <img className={cns('image-preview')} src={`data:image/jpeg;base64,${file}`} alt="upload preview" />}

@@ -69,7 +69,7 @@
   }
   .blog-image-preview {
     width: 200px;
-    margin: 30px;
+    margin: 10px 30px;
   }
   .blog-image-uploader {
     margin: 10px 30px;
@@ -79,4 +79,13 @@
 
 .modal-dialog {
   max-width: 50vw !important;
+}
+
+.admin-modal {
+  input, textarea {
+    width: 100%;
+  }
+  textarea {
+    height: 75px;
+  }
 }

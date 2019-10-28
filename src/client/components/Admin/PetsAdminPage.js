@@ -68,6 +68,7 @@ export default class AdminPage extends PureComponent {
         <Modal
           show={showModal}
           onHide={() => this.setState({ editIndex: false, showModal: false })}
+          className="admin-modal"
         >
           <Modal.Header closeButton>
             <Modal.Title>{editIndex ? 'Edit Pet' : 'Add New Pet'}</Modal.Title>

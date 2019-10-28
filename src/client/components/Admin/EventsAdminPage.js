@@ -64,6 +64,7 @@ export default class EventsAdminPage extends PureComponent {
         <Modal
           show={showModal}
           onHide={() => this.setState({ editIndex: false, showModal: false })}
+          className="admin-modal"
         >
           <Modal.Header closeButton>
             <Modal.Title>{editIndex ? 'Edit Event' : 'Add New Event'}</Modal.Title>

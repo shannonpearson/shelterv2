@@ -65,6 +65,7 @@ export default class BlogsAdminPage extends PureComponent {
         <Modal
           show={showModal}
           onHide={() => this.setState({ editIndex: false, showModal: false })}
+          className="admin-modal"
         >
           <Modal.Header closeButton>
             <Modal.Title>{editIndex ? 'Edit Blog Entry' : 'Add New Blog Entry'}</Modal.Title>
