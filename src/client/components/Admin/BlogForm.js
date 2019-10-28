@@ -14,15 +14,14 @@ const initialValues = {
 const BlogForm = (props) => {
   const { onSave, onSaveEdit, blogToEdit } = props;
   const richTextBody = blogToEdit && blogToEdit.body ? RichTextEditor.createValueFromString(blogToEdit.body, 'html') : RichTextEditor.createEmptyValue();
-
   const [body, setBody] = useState(richTextBody);
-  const [files, setFiles] = useState((blogToEdit && blogToEdit.files) || []);
+  const [files, setFiles] = useState((blogToEdit && blogToEdit.images) || []);
 
 
   const onRTEChange = (value) => setBody(value);
 
   const handleSubmit = (values, actions) => {
-    const blogObject = { ...values, body: body.toString('html') };
+    const blogObject = { ...values, body: body.toString('html'), images: files };
 
     if (blogToEdit) {
       return onSaveEdit({ ...blogObject }).then(() => {
@@ -73,6 +72,7 @@ const BlogForm = (props) => {
             value={body}
             onChange={onRTEChange}
           />
+          <div className="row file-upload-text">Add Images:</div>
           <div className="multiple-file-uploader">
             <div className="files-preview-display">
               {files.map((file, i) => (
@@ -117,82 +117,3 @@ BlogForm.defaultProps = {
 };
 
 export default BlogForm;
-
-// export default class BlogForm extends PureComponent {
-//   static propTypes = {
-//     onSaveEdit: PropTypes.func,
-//     onSave: PropTypes.func,
-//     blogToEdit: PropTypes.object,
-//   }
-
-//   static defaultProps = {
-//     onSaveEdit: () => {},
-//     onSave: () => {},
-//     blogToEdit: null,
-//   }
-
-//   constructor(props) {
-//     super(props);
-//     const richTextBody = props.blogToEdit && props.blogToEdit.body ? RichTextEditor.createValueFromString(props.blogToEdit.body, 'html') : RichTextEditor.createEmptyValue();
-//     this.state = {
-//       body: richTextBody,
-//     };
-//   }
-
-//   onRTEChange = (body) => this.setState({ body });
-
-//   handleSubmit = (values, actions) => {
-//     const { onSave, onSaveEdit, blogToEdit } = this.props;
-//     const { body } = this.state;
-//     const blogObject = { ...values, body: body.toString('html') };
-
-//     if (blogToEdit) {
-//       return onSaveEdit({ ...blogObject }).then(() => {
-//         actions.setSubmitting(false);
-//         actions.resetForm();
-//       });
-//     }
-//     return onSave(blogObject).then(() => {
-//       actions.setSubmitting(false);
-//       actions.resetForm();
-//     });
-//   }
-
-//   render() {
-//     const { blogToEdit } = this.props;
-
-//     return (
-//       <Formik
-//         initialValues={blogToEdit ? { ...blogToEdit } : { ...initialValues }}
-//         onSubmit={this.handleSubmit}
-//         render={(props) => (
-//           <form onSubmit={props.handleSubmit}>
-//             <div className="label-text">
-//               Title
-//             </div>
-//             <input
-//               type="text"
-//               onChange={props.handleChange}
-//               onBlur={props.handleBlur}
-//               value={props.values.title}
-//               name="title"
-//             />
-//             <div className="label-text">
-//               Post Body
-//             </div>
-//             <RichTextEditor
-//               value={this.state.body}
-//               onChange={this.onRTEChange}
-//             />
-//             <MultipleFileUpload />
-//             <div className="row button-row">
-//               <Button variant="primary" type="submit">
-//               Save Changes
-//               </Button>
-//             </div>
-//           </form>
-//         )}
-//       />
-//     );
-//   }
-// }

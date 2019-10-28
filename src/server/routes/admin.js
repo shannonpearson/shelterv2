@@ -81,10 +81,10 @@ router.delete('/pets/:id', async (req, res) => {
 router.post('/blogs', (req, res) => {
   try {
     const {
-      title, body, image = null,
+      title, body, images = [],
     } = req.body.blog;
     const newBlogObject = {
-      title, body, image,
+      title, body, images,
     };
     const blog = new Blog(newBlogObject);
 
@@ -143,7 +143,6 @@ router.delete('/blogs/:id', async (req, res) => {
 
 /* EVENTS ADMIN */
 router.post('/events', (req, res) => {
-  console.log('post event');
   try {
     const {
       title, description, startDate, endDate,

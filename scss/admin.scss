@@ -64,12 +64,15 @@
   .public-DraftEditor-content {
     min-height: 200px;
   }
+  .file-upload-text {
+    margin: 20px 30px 10px;
+  }
   .blog-image-preview {
     width: 200px;
     margin: 30px;
   }
   .blog-image-uploader {
-    margin-left: 30px;
+    margin: 10px 30px;
     color: white;
   }
 }
