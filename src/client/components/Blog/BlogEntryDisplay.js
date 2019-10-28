@@ -24,7 +24,7 @@ const BlogEntryDisplay = (props) => {
               Posted by East Haven Animal Shelter
               {date ? ` on ${date}` : ''}
             </div>
-            <p className="blog-description">{body}</p>
+            <div dangerouslySetInnerHTML={{ __html: body }} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
