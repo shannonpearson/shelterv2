@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Card, Spinner, Modal } from 'react-bootstrap';
 import { unauthenticatedFetch } from '../../utils/fetchUtils';
 import PetCard from './PetCard';
 
-export default class AdoptContainer extends Component {
+export default class AdoptContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,9 +54,16 @@ export default class AdoptContainer extends Component {
 
   handleCardClick = (index) => this.setState({ viewIndex: index })
 
-  _renderPetPanels = (pets) => pets.map((pet, index) => (
-    <PetCard pet={pet} key={pet._id} onClick={() => this.handleCardClick(index)} isPreview />
-  ))
+  _renderPetPanels = (pets) => (
+    <>
+      { pets.map((pet, index) => (
+        <PetCard pet={pet} key={pet._id} onClick={() => this.handleCardClick(index)} isPreview />
+      ))}
+      <div className="pets-intro">
+        Please contact us for the most up-to-date information on pets currently in the shelter.
+      </div>
+    </>
+  )
 
   _renderNoPets = () => (
     <div className="no-pets-section">
