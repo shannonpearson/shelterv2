@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Spinner } from 'react-bootstrap';
+import { Card, Spinner, Modal } from 'react-bootstrap';
 import { unauthenticatedFetch } from '../../utils/fetchUtils';
 import PetCard from './PetCard';
 
@@ -9,6 +9,7 @@ export default class AdoptContainer extends Component {
     this.state = {
       pets: [],
       loading: true,
+      viewIndex: -1,
     };
   }
 
@@ -44,14 +45,17 @@ export default class AdoptContainer extends Component {
               We are open from 8am-3pm, Mon through Sat.
               If you are interested in a pet, the best thing to do during the week is
               call the shelter at 203-468-3249 and set up an appointment to see an animal.
-              There are usually volunteers at the shelter on Saturdays who can help you if you want to drop in.
+              There are usually volunteers at the shelter on Saturdays who can help you if you want
+              to drop in.
         </p>
       </Card.Body>
     </Card>
   )
 
-  _renderPetPanels = (pets) => pets.map((pet) => (
-    <PetCard pet={pet} key={pet._id} />
+  handleCardClick = (index) => this.setState({ viewIndex: index })
+
+  _renderPetPanels = (pets) => pets.map((pet, index) => (
+    <PetCard pet={pet} key={pet._id} onClick={() => this.handleCardClick(index)} isPreview />
   ))
 
   _renderNoPets = () => (
@@ -62,10 +66,10 @@ export default class AdoptContainer extends Component {
   )
 
   render() {
-    const { pets, loading } = this.state;
+    const { pets, loading, viewIndex } = this.state;
     return (
       <div className="container adopt-container">
-        <div className="pets-section col-xs-12 col-sm-9">
+        <div className="pets-section col-xs-12 col-sm-8">
           {!!loading && (
           <Spinner animation="border" role="status" className="loading-spinner">
             <span className="sr-only">Loading...</span>
@@ -73,9 +77,14 @@ export default class AdoptContainer extends Component {
           )}
           {!loading && (pets.length ? this._renderPetPanels(pets) : this._renderNoPets())}
         </div>
-        <div className="faq-panel col-xs-12 col-sm-3 pull-right">
+        <div className="faq-panel col-xs-12 col-sm-4 pull-right">
           {this._renderPanel()}
         </div>
+        <Modal className="pet-info-modal" show={viewIndex > -1} onHide={() => this.setState({ viewIndex: -1 })}>
+          <Modal.Body>
+            <PetCard pet={pets[viewIndex]} isPreview={false} />
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }

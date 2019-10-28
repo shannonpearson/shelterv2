@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cns from 'classnames';
 import { Card, Image } from 'react-bootstrap';
 
 const PetCard = (props) => {
@@ -7,11 +8,18 @@ const PetCard = (props) => {
     pet: {
       image, name, breed, age, bio, sex,
     } = {},
+    onClick,
+    isPreview,
   } = props;
   const src = `data:image/jpeg;base64,${image}`;
   return (
-    <div className="pet-card-container col-xs-12 col-sm-4">
-      <Card className="pet-card">
+    <div className={cns('pet-card-container', { 'col-xs-12 col-sm-4': isPreview })}>
+      <Card className="pet-card" onClick={onClick}>
+        {!!isPreview && (
+        <div className="card-overlay">
+          {`Click to learn more about ${name}!`}
+        </div>
+        )}
         <Card.Header as="h5">
           {name}
         </Card.Header>
@@ -19,14 +27,31 @@ const PetCard = (props) => {
           <div className="pet-card-image-container">
             <Image src={src} className="pet-card-image" rounded responsive />
           </div>
-          {!!breed && <p>{`Breed: ${breed}`}</p>}
-          {!!sex && <p>{`Sex: ${sex}`}</p>}
-          {!!age && (
-          <p>
-            {`Age: ${age}`}
-          </p>
+          {!isPreview && (
+            <div className="info-container">
+              {!!breed && (
+              <p>
+                <span className="label">Breed:</span>
+                {' '}
+                {breed}
+              </p>
+              )}
+              {!!sex && (
+              <p>
+                <span className="label">Sex:</span>
+                {sex}
+              </p>
+              )}
+              {!!age && (
+              <p>
+                <span className="label">Age:</span>
+                {' '}
+                {age}
+              </p>
+              )}
+              <p>{bio}</p>
+            </div>
           )}
-          <p>{bio}</p>
         </Card.Body>
       </Card>
     </div>
@@ -41,6 +66,8 @@ PetCard.propTypes = {
     age: PropTypes.string,
     bio: PropTypes.string,
   }),
+  onClick: PropTypes.func,
+  isPreview: PropTypes.bool,
 };
 PetCard.defaultProps = {
   pet: {
@@ -50,6 +77,8 @@ PetCard.defaultProps = {
     age: '',
     bio: '',
   },
+  onClick: null,
+  isPreview: true,
 };
 
 export default PetCard;
