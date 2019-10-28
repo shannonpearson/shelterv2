@@ -2,7 +2,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import PropTypes from 'prop-types';
-import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
+import { unauthenticatedFetch } from '../../utils/fetchUtils';
 
 const CURRENCY = 'USD';
 

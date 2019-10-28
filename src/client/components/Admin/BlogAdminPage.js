@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import BlogForm from './BlogForm';
 import AdminTable from './AdminTable';
-import authenticatedFetch from '../../fetchUtils/authenticatedFetch';
-import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
+import { authenticatedFetch, unauthenticatedFetch } from '../../utils/fetchUtils';
 
 export default class BlogsAdminPage extends PureComponent {
   constructor(props) {

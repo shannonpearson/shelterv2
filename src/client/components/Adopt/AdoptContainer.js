@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Spinner } from 'react-bootstrap';
-import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
+import { unauthenticatedFetch } from '../../utils/fetchUtils';
 import PetCard from './PetCard';
 
 export default class AdoptContainer extends Component {

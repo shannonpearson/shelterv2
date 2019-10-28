@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Spinner } from 'react-bootstrap';
 import Login from './Login';
 import AdminTabsComponent from './AdminTabsComponent';
-import authenticatedFetch from '../../fetchUtils/authenticatedFetch';
+import { authenticatedFetch } from '../../utils/fetchUtils';
 
 
 export default class AdminContainer extends PureComponent {

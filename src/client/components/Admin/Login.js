@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
-import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
+import { unauthenticatedFetch } from '../../utils/fetchUtils';
 
 class Login extends PureComponent {
   static propTypes = {

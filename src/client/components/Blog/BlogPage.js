@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Promise as BluebirdPromise } from 'bluebird';
 import EventList from './EventList';
 import BlogList from './BlogList';
-import unauthenticatedFetch from '../../fetchUtils/unauthenticatedFetch';
+import { unauthenticatedFetch } from '../../utils/fetchUtils';
 
 export default class BlogPage extends PureComponent {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class BlogPage extends PureComponent {
   render() {
     const { events, blogs } = this.state;
     return (
-      <div className="container">
+      <div className="container blog-page">
         <div className="row blogs-page-title">
           <h4>Recent Posts</h4>
         </div>
