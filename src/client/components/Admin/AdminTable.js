@@ -25,7 +25,7 @@ const AdminTable = (props) => {
           const image = `data:image/jpeg;base64,${item.image}`;
           return <td key={`${item._id}-${prop}`}>{image && <img src={image} width="80px" alt="thumbnail" />}</td>;
         }
-        if (prop.toLowerCase().endsWith('date')) {
+        if (prop.toLowerCase().endsWith('date') || prop === 'createdOn') {
           const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
           return <td key={`${item._id}-${prop}`}>{date}</td>;
         }
