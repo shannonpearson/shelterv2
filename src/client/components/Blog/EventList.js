@@ -8,7 +8,7 @@ const EventList = (props) => {
   return (
     <div className="event-display-container col-xs-12 col-sm-4 pull-right">
       <Card>
-        <Card.Header>
+        <Card.Header className="event-display-header">
           <h4>Upcoming Events</h4>
         </Card.Header>
         <Card.Body>

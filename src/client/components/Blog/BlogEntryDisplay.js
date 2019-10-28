@@ -11,9 +11,9 @@ const BlogEntryDisplay = (props) => {
     index,
   } = props;
   const date = createdOn ? format(new Date(createdOn), 'MMM do, yyyy h:mm aa') : null;
-
+  const defaultActiveKey = index === 0 ? 0 : null;
   return (
-    <Accordion>
+    <Accordion className="blog-accordion" defaultActiveKey={defaultActiveKey}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={index}>
           {title}

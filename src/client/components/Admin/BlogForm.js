@@ -47,7 +47,7 @@ export default class BlogForm extends PureComponent {
     const { onSave, onSaveEdit, blogToEdit } = this.props;
     const { body } = this.state;
     const blogObject = { ...values, body: body.toString('html') };
-    console.log(blogObject);
+
     if (blogToEdit) {
       return onSaveEdit({ ...blogObject }).then(() => {
         actions.setSubmitting(false);
