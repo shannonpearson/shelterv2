@@ -49,7 +49,8 @@ const AdminTable = (props) => {
       <Table bordered>
         <thead>
           <tr>
-            {tableProperties.map((columnName) => <th key={columnName}>{columnName.toUpperCase()}</th>)}
+            {tableProperties
+              .map((columnName) => <th key={columnName}>{columnName.toUpperCase()}</th>)}
             <th>Actions</th>
           </tr>
         </thead>
