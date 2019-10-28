@@ -28,7 +28,7 @@ const Home = () => (
           We are committed to helping all animals that come into our care, and adopting them out to
           loving homes. Unfortunately, we are not a no-kill shelter, but with the help of our
           compassionate Animal Control Officers and our volunteer group, we do everything within our
-          power to insure that an adoptable animal is not euthanized.`}
+          power to ensure that an adoptable animal is not euthanized.`}
         </div>
       </div>
     </div>
