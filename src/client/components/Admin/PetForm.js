@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import cns from 'classnames';
 import { Button } from 'react-bootstrap';
+import { uploadPhoto } from '../../utils/imageUploadUtils';
 
 const initialValues = {
   name: '',
@@ -39,21 +40,7 @@ export default class PetForm extends PureComponent {
     }
   }
 
-  handlePhotoUpload = (event) => {
-    // const preview = document.querySelector('.image-preview');
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener('load', () => {
-      // preview.src = reader.result;
-      const base64String = /,(.+)/.exec(reader.result)[1]; // selects and removes everything before the first comma
-      this.setState({ file: base64String });
-    }, false);
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
+  handlePhotoUpload = (event) => uploadPhoto(event, (file) => this.setState({ file }))
 
   handleSave = (values, actions) => {
     const { onSave, onSaveEdit, petToEdit } = this.props;
