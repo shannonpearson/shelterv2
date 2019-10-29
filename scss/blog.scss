@@ -108,3 +108,42 @@
     }
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .blog-page {
+    padding: 50px 0 !important;
+
+    .blogs-page-title {
+      padding: 0;
+      h4 {
+        margin: 0 auto;
+      }
+    }
+
+    .card-body {
+      padding: 10px !important;
+    }
+    .blog-list, .event-display-container {
+      padding: 0;
+    }
+    .carousel-container {
+      height: 250px;
+      img {
+        height: 250px;
+      }
+    }
+    .blog-date {
+      text-align: center;
+    }
+
+    .event-display-container {
+      padding: 0px 15px;
+      .event-date {
+        font-size: 0.8rem;
+      }
+      .event-description {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
