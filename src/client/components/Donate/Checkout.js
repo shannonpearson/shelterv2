@@ -16,21 +16,18 @@ const errorPayment = () => {
   alert('Payment Error');
 };
 
-const onToken = (amount, description) => (token) => {
-  console.log('ON TOKEN');
-  return unauthenticatedFetch('/donate/stripe', {
-    method: 'POST',
-    body: {
-      description,
-      source: token.id,
-      currency: CURRENCY,
-      amount: fromDollarToCent(amount),
-      email: token.email,
-    },
-  })
-    .then(successPayment)
-    .catch(errorPayment);
-};
+const onToken = (amount, description) => (token) => unauthenticatedFetch('/donate/stripe', {
+  method: 'POST',
+  body: {
+    description,
+    source: token.id,
+    currency: CURRENCY,
+    amount: fromDollarToCent(amount),
+    email: token.email,
+  },
+})
+  .then(successPayment)
+  .catch(errorPayment);
 
 const Checkout = ({ name, description, amount }) => (
   <StripeCheckout
