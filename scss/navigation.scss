@@ -1,6 +1,5 @@
 .app {
-  background-image: url('../src/resources/background.png');
-  opacity: 0.8;
+  background-image: url('../static/background.png');
   min-height: 100vh;
 }
 
@@ -31,6 +30,14 @@
   .footer-text {
     padding: 0 15px;
     font-size: .9rem;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .footer {
+    .facebook-button {
+      margin: 10px 0;
+    }
   }
 }
 

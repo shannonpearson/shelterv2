@@ -10,7 +10,7 @@
     margin: 30px 45%;
   }
   .blog-list, .event-display-container {
-    padding: 0 50px;
+    padding: 0 80px;
   }
   .load-more-blogs-button {
     margin: 0 auto;
@@ -84,6 +84,7 @@
       padding: 6px 12px 8px;
       &:hover {
         cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.08)
       }
     }
   }

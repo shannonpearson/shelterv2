@@ -13,7 +13,7 @@ const PetCard = (props) => {
   } = props;
   const src = `data:image/jpeg;base64,${image}`;
   return (
-    <div className={cns('pet-card-container', { 'col-xs-12 col-sm-4': isPreview })}>
+    <div className={cns('pet-card-container', { 'col-12 col-sm-4': isPreview })}>
       <Card className="pet-card" onClick={onClick}>
         {!!isPreview && (
         <div className="card-overlay">
@@ -25,7 +25,7 @@ const PetCard = (props) => {
         </Card.Header>
         <Card.Body>
           <div className="pet-card-image-container">
-            <Image src={src} className="pet-card-image" rounded responsive />
+            <Image src={src} className="pet-card-image" rounded />
           </div>
           {!isPreview && (
             <div className="info-container">

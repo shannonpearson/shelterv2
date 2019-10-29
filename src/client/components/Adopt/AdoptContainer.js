@@ -76,7 +76,7 @@ export default class AdoptContainer extends PureComponent {
     const { pets, loading, viewIndex } = this.state;
     return (
       <div className="container adopt-container">
-        <div className="pets-section col-xs-12 col-sm-8">
+        <div className="pets-section col-12 col-sm-8">
           {!!loading && (
           <Spinner animation="border" role="status" className="loading-spinner">
             <span className="sr-only">Loading...</span>
@@ -84,7 +84,7 @@ export default class AdoptContainer extends PureComponent {
           )}
           {!loading && (pets.length ? this._renderPetPanels(pets) : this._renderNoPets())}
         </div>
-        <div className="faq-panel col-xs-12 col-sm-4 pull-right">
+        <div className="faq-panel col-12 col-sm-4">
           {this._renderPanel()}
         </div>
         <Modal className="pet-info-modal" show={viewIndex > -1} onHide={() => this.setState({ viewIndex: -1 })}>

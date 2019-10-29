@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Accordion, Carousel } from 'react-bootstrap';
 import { format } from 'date-fns';
@@ -30,7 +30,7 @@ const BlogEntryDisplay = (props) => {
               <div className="carousel-container">
                 <Carousel>
                   {images.map((image) => (
-                    <Carousel.Item key={image.slice(0, 20)}>
+                    <Carousel.Item key={image.slice(-10)}>
                       <img
                         className="d-block"
                         src={`data:image/jpeg;base64,${image}`}

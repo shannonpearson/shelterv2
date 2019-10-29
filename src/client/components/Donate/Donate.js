@@ -38,7 +38,7 @@ function Donate() {
           amount={amount}
           panelLabel="Donate"
           closed={() => setAmount(0)}
-          className="col-xs-2 checkout"
+          className="col-6 col-sm-2 checkout"
         />
       </div>
       <div className="row donations-info-row">
@@ -83,7 +83,7 @@ function Donate() {
           prevented, but once contracted, very costly and risky to treat, and fatal if left
           untreated.
         </p>
-        <Image src="../resources/tux.png" className="tux" />
+        <Image src="tux.png" className="tux" />
         <p className="story-paragraph">
           Tux survived the series of heartworm treatments and recovered physically and emotionally
           from his sad past. We are happy to report that he has since been adopted and is now a

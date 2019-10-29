@@ -1,13 +1,17 @@
 .adopt-container {
   display: flex;
   padding-top: 80px;
+  flex-wrap: wrap;
 
   .pets-section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    align-content: flex-start;
 
+    .pet-card-container {
+      margin-bottom: 30px;
+    }
     .pet-card {
       &:hover {
         cursor: pointer;
@@ -83,9 +87,7 @@
       width: 400px;
       padding-bottom: 0;
     }
-    .pet-card-image {
 
-    }
     .label {
       font-weight: 600;
     }
@@ -96,5 +98,29 @@
   }
   .modal-dialog {
     max-width: 40vw !important;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .pet-info-modal {
+    .modal-dialog {
+      max-width: 85vw !important;
+    }
+    .pet-card {
+      .pet-card-image-container {
+        width: 90%;
+        height: 60vw;
+      }
+    }
+    .info-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  .adopt-container {
+    .pets-intro {
+      margin-bottom: 25px;
+      text-align: center;
+    }
   }
 }

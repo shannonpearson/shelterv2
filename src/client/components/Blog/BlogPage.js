@@ -41,7 +41,7 @@ export default class BlogPage extends PureComponent {
     } = this.state;
     return (
       <div className="container blog-page">
-        <Tabs defaultActiveKey="blog" id="uncontrolled-tab-example">
+        <Tabs defaultActiveKey="blog" id="blog-tabs">
           <Tab eventKey="blog" title="Blog">
             {!loading && <BlogList blogs={blogs} hideLoadMore={hideLoadMore} />}
           </Tab>

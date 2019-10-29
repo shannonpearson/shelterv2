@@ -46,7 +46,7 @@ class Login extends PureComponent {
   render() {
     const { username, password, errorMessage } = this.state;
     return (
-      <div className="col-xs-12 col-sm-8">
+      <div className="col-12 col-sm-8">
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Group className="col-sm-8">
             <Form.Label>Username:</Form.Label>

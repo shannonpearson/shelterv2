@@ -6,12 +6,11 @@ import BlogEntryDisplay from './BlogEntryDisplay';
 const BlogList = (props) => {
   const { blogs, onLoadMore, hideLoadMore } = props;
   return (
-    <div className="blog-list col-xs-12">
+    <div className="blog-list col-12">
       <div className="row blogs-page-title">
         <h4>Recent Posts</h4>
       </div>
       {blogs.map((blog, i) => <BlogEntryDisplay key={`blog-post-${blog.title}`} blog={blog} index={i} />)}
-      <Button onClick={onLoadMore}>Load More</Button>
       {!hideLoadMore && (
       <div className="row button-row">
         <Button className="load-more-blogs-button" onClick={onLoadMore}>Load More</Button>

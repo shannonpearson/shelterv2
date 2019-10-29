@@ -5,7 +5,7 @@ import EventDisplay from './EventDisplay';
 const EventList = (props) => {
   const { events } = props;
   return (
-    <div className="event-display-container col-xs-12">
+    <div className="event-display-container col-12">
       <div className="row blogs-page-title">
         <h4>Upcoming Events</h4>
       </div>

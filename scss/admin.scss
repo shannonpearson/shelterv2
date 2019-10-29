@@ -89,3 +89,9 @@
     height: 75px;
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .admin-container {
+    display: none;
+  }
+}
