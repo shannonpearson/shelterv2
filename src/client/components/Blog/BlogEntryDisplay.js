@@ -18,7 +18,9 @@ const BlogEntryDisplay = (props) => {
     <Accordion className="blog-accordion" defaultActiveKey={defaultActiveKey}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey={index}>
-          {title}
+          <h4 className="blog-title">
+            {title}
+          </h4>
           <div className="blog-date">
             Posted by East Haven Animal Shelter
             {date ? ` on ${date}` : ''}
