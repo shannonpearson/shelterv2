@@ -91,7 +91,7 @@
 }
 
 @media (max-width: $screen-xs-max) {
-  .admin-container {
+  .admin-container > * {
     display: none;
   }
 }
