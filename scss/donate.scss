@@ -31,3 +31,11 @@
     align-items: center;
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .donate-container {
+    img {
+      max-width: 80vw;
+    }
+  }
+}

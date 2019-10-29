@@ -17,3 +17,11 @@
     margin: 0 50px;
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .home-container {
+    .home-text {
+      max-width: 95vw;
+    }
+  }
+}
