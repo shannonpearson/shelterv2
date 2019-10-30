@@ -29,27 +29,34 @@ const onToken = (amount, description) => (token) => unauthenticatedFetch('/donat
   .then(successPayment)
   .catch(errorPayment);
 
-const Checkout = ({ name, description, amount }) => (
+const Checkout = ({
+  amount, description, closed, className,
+}) => (
   <StripeCheckout
-    name={name}
+    name="East Haven Animal Shelter"
     description={description}
     amount={fromDollarToCent(amount)}
     token={onToken(amount, description)}
+    panelLabel="Donate"
+    closed={closed}
+    className={className}
     currency={CURRENCY}
     stripeKey="pk_test_B53wtYSwYahl6uN31pH9pyZ2"
   />
 );
 
 Checkout.propTypes = {
-  name: PropTypes.string,
+  closed: PropTypes.func,
   description: PropTypes.string,
   amount: PropTypes.number,
+  className: PropTypes.string,
 };
 
 Checkout.defaultProps = {
-  name: '',
+  closed: null,
   description: '',
   amount: 0,
+  className: '',
 };
 
 export default Checkout;

@@ -33,12 +33,10 @@ function Donate() {
           </Form.Group>
         </Form>
         <Checkout
-          name="East Haven Animal Shelter"
-          description="Donate"
           amount={amount}
-          panelLabel="Donate"
+          description="Donation - East Haven Animal Shelter"
           closed={() => setAmount(0)}
-          className="col-6 col-sm-2 checkout"
+          className="checkout"
         />
       </div>
       <div className="row donations-info-row">
