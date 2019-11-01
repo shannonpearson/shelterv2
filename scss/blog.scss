@@ -76,7 +76,14 @@
   }
 }
 
-
+.collapse {
+  &.show {
+    display: block;
+  }
+  &:not(.show) {
+    display: none;
+  }
+}
 
 
 .event-display-container {
