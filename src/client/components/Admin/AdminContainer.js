@@ -20,6 +20,7 @@ export default class AdminContainer extends PureComponent {
 
   checkAuthentication = () => authenticatedFetch('/admin/access')
     .then(({ success }) => this.setState({ isAuthenticated: !!success, loading: false }))
+    .catch(() => this.setState({ loading: false }))
 
   render() {
     const { isAuthenticated, loading } = this.state;
