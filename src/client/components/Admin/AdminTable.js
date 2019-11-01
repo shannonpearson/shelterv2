@@ -18,31 +18,33 @@ const AdminTable = (props) => {
     return null;
   };
 
-  const _renderTableRows = () => data.map((item, i) => (
-    <tr key={item._id}>
-      {tableProperties.map((prop) => {
-        if (prop === 'image' && item.image) {
-          const image = `data:image/jpeg;base64,${item.image}`;
-          return <td key={`${item._id}-${prop}`}>{image && <img src={image} width="80px" alt="thumbnail" />}</td>;
-        }
-        if (prop.toLowerCase().endsWith('date') || prop === 'createdOn') {
-          const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
-          return <td key={`${item._id}-${prop}`}>{date}</td>;
-        }
-        return (
-          <td key={`${item._id}-${prop}`}>
-            {item[prop] || ''}
-          </td>
-        );
-      })}
-      <td>
-        <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
-        <Button className="action-button" onClick={() => handleDelete(item._id, i)}>
-          <FontAwesomeIcon icon={faTrash} />
-        </Button>
-      </td>
-    </tr>
-  ));
+  function _renderTableRows() {
+    return data.map((item, i) => (
+      <tr key={item._id}>
+        {tableProperties.map((prop) => {
+          if (prop === 'image' && item.image) {
+            const image = `data:image/jpeg;base64,${item.image}`;
+            return <td key={`${item._id}-${prop}`}>{image && <img src={image} width="80px" alt="thumbnail" />}</td>;
+          }
+          if (prop.toLowerCase().endsWith('date') || prop === 'createdOn') {
+            const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
+            return <td key={`${item._id}-${prop}`}>{date}</td>;
+          }
+          return (
+            <td key={`${item._id}-${prop}`}>
+              {item[prop] || ''}
+            </td>
+          );
+        })}
+        <td>
+          <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
+          <Button className="action-button" onClick={() => handleDelete(item._id, i)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </Button>
+        </td>
+      </tr>
+    ));
+  }
 
   return (
     <div className={cns('col-sm-12', 'admin-table-container', className)}>
