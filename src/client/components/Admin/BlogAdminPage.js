@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import BlogForm from './BlogForm';
 import AdminTable from './AdminTable';
 import { authenticatedFetch, unauthenticatedFetch } from '../../utils/fetchUtils';
@@ -11,12 +11,13 @@ export default class BlogsAdminPage extends PureComponent {
       blogs: [],
       showModal: false,
       editIndex: null,
+      loading: true,
     };
     this.tableProperties = ['title', 'body', 'createdOn'];
   }
 
   componentDidMount() {
-    unauthenticatedFetch('/blogs/all').then(({ blogs }) => blogs && this.setState({ blogs }));
+    unauthenticatedFetch('/blogs/all').then(({ blogs }) => blogs && this.setState({ blogs, loading: false }));
   }
 
   handleSave = (newBlog) => authenticatedFetch('/admin/blogs', { method: 'POST', body: { blog: newBlog } })
@@ -46,10 +47,17 @@ export default class BlogsAdminPage extends PureComponent {
     }))
 
   render() {
-    const { showModal, blogs, editIndex } = this.state;
+    const {
+      showModal, blogs, editIndex, loading,
+    } = this.state;
 
     return (
       <div className="blogs-admin-container">
+        {!!loading && (
+        <Spinner animation="border" role="status" className="loading-spinner">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+        )}
         <div className="row">
           <AdminTable
             data={blogs}

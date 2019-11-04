@@ -7,9 +7,6 @@ const app = express();
 
 app.use('/api', proxy({
   target: 'http://localhost:3000',
-  pathRewrite: {
-    '^/api': '',
-  },
   changeOrigin: true,
 }));
 

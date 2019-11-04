@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import AdminTable from './AdminTable';
 import PetForm from './PetForm';
 import { authenticatedFetch, unauthenticatedFetch } from '../../utils/fetchUtils';
@@ -11,15 +11,14 @@ export default class AdminPage extends PureComponent {
       allPets: [],
       showModal: false,
       editIndex: null,
+      loading: true,
     };
     this.tableProperties = ['image', 'name', 'sex', 'age', 'breed'];
   }
 
   componentDidMount() {
-    return unauthenticatedFetch('/pets/all').then(({ success, pets }) => {
-      if (success && pets) {
-        this.setState({ allPets: pets });
-      }
+    return unauthenticatedFetch('/pets/all').then(({ pets }) => {
+      this.setState({ allPets: pets, loading: false });
     });
   }
 
@@ -50,9 +49,16 @@ export default class AdminPage extends PureComponent {
     }))
 
   render() {
-    const { allPets, showModal, editIndex } = this.state;
+    const {
+      allPets, showModal, editIndex, loading,
+    } = this.state;
     return (
       <div className="admin-page-container">
+        {!!loading && (
+        <Spinner animation="border" role="status" className="loading-spinner">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+        )}
         <div className="row">
           <AdminTable
             data={allPets}

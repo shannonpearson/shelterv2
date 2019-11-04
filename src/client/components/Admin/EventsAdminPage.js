@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 import EventForm from './EventForm';
 import AdminTable from './AdminTable';
 import { authenticatedFetch, unauthenticatedFetch } from '../../utils/fetchUtils';
@@ -11,12 +11,13 @@ export default class EventsAdminPage extends PureComponent {
       events: [],
       showModal: false,
       editIndex: null,
+      loading: true,
     };
     this.tableProperties = ['title', 'description', 'startDate', 'endDate'];
   }
 
   componentDidMount() {
-    unauthenticatedFetch('/events/all').then(({ events }) => events && this.setState({ events }));
+    unauthenticatedFetch('/events/all').then(({ events }) => events && this.setState({ events, loading: false }));
   }
 
   handleSave = (newEvent) => authenticatedFetch('/admin/events', { method: 'POST', body: { event: newEvent } })
@@ -46,9 +47,16 @@ export default class EventsAdminPage extends PureComponent {
     }))
 
   render() {
-    const { showModal, events, editIndex } = this.state;
+    const {
+      showModal, events, editIndex, loading,
+    } = this.state;
     return (
       <div className="events-admin-container">
+        {!!loading && (
+        <Spinner animation="border" role="status" className="loading-spinner">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+        )}
         <div className="row">
           <AdminTable
             data={events}
