@@ -15,6 +15,20 @@
       margin: 20px auto;
     }
   }
+  .svg-inline--fa.fa-w-18 {
+    width: .9em;
+  }
+  .svg-inline--fa.fa-w-14 {
+    width: .7em;
+  }
+  button {
+    padding: 4px 10px;
+  }
+  .nav-tabs {
+    a {
+      color: #495057;
+    }
+  }
 }
 
 .admin-table-container {
@@ -34,9 +48,15 @@
   }
   .image-preview {
     margin: 10px;
+    max-height: 200px;
+    max-width: 200px;
     &.hidden {
       opacity: 0;
     }
+  }
+  input, textarea {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 .new-event-form {
@@ -86,7 +106,7 @@
     width: 100%;
   }
   textarea {
-    height: 75px;
+    height: 150px;
   }
 }
 
