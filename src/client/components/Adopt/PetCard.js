@@ -6,11 +6,22 @@ import { Card, Image } from 'react-bootstrap';
 const PetCard = (props) => {
   const {
     pet: {
-      image, name, breed, age, bio, sex,
+      image, name, breed, age, sex, bio,
     } = {},
     onClick,
     isPreview,
   } = props;
+  const infoList = [];
+  if (breed) {
+    infoList.push(breed);
+  }
+  if (sex) {
+    infoList.push(sex);
+  }
+  if (age) {
+    infoList.push(age);
+  }
+  const infoString = infoList.join(' | ');
   const src = `data:image/jpeg;base64,${image}`;
   return (
     <div className={cns('pet-card-container', { 'col-12 col-sm-4': isPreview })}>
@@ -29,27 +40,42 @@ const PetCard = (props) => {
           </div>
           {!isPreview && (
             <div className="info-container">
-              {!!breed && (
+              <div className="info-string">
+                {infoString}
+              </div>
+              {/* {!!breed && (
               <p>
-                <span className="label">Breed:</span>
-                {' '}
-                {breed}
+                <span className="label">
+                  Breed:
+                  <span className="info-item">{breed}</span>
+                </span>
+
               </p>
               )}
               {!!sex && (
               <p>
-                <span className="label">Sex:</span>
-                {sex}
+                <span className="label">
+                  Sex:
+                  <span className="info-item">{sex}</span>
+                </span>
               </p>
               )}
               {!!age && (
               <p>
-                <span className="label">Age:</span>
-                {' '}
-                {age}
+                <span className="label">
+                  Age:
+                  <span className="info-item">{age}</span>
+                </span>
               </p>
-              )}
-              <p>{bio}</p>
+              )} */}
+              {
+                !!bio && (
+                  <p>
+                    <span className="label">{`About ${name}:`}</span>
+                    {bio}
+                  </p>
+                )
+              }
             </div>
           )}
         </Card.Body>

@@ -22,11 +22,11 @@ const AdminTable = (props) => {
     return data.map((item, i) => (
       <tr key={item._id}>
         {tableProperties.map((prop) => {
-          if (prop === 'image' && item.image) {
+          if (prop === 'image' && item[prop]) {
             const image = `data:image/jpeg;base64,${item.image}`;
             return <td key={`${item._id}-${prop}`}>{image && <img src={image} width="80px" alt="thumbnail" />}</td>;
           }
-          if (prop.toLowerCase().endsWith('date') || prop === 'createdOn') {
+          if ((prop.toLowerCase().endsWith('date') || prop === 'createdOn') && item[prop]) {
             const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
             return <td key={`${item._id}-${prop}`}>{date}</td>;
           }
