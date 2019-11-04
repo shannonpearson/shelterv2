@@ -17,7 +17,7 @@ const BlogEntryDisplay = (props) => {
   return (
     <Accordion className="blog-accordion" defaultActiveKey={defaultActiveKey}>
       <Card>
-        <Accordion.Toggle as={Card.Header} eventKey={index}>
+        <Accordion.Toggle as={Card.Header} eventKey={index} onClick={() => { console.log('click'); }}>
           <h4 className="blog-title">
             {title}
           </h4>

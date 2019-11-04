@@ -43,31 +43,6 @@ const PetCard = (props) => {
               <div className="info-string">
                 {infoString}
               </div>
-              {/* {!!breed && (
-              <p>
-                <span className="label">
-                  Breed:
-                  <span className="info-item">{breed}</span>
-                </span>
-
-              </p>
-              )}
-              {!!sex && (
-              <p>
-                <span className="label">
-                  Sex:
-                  <span className="info-item">{sex}</span>
-                </span>
-              </p>
-              )}
-              {!!age && (
-              <p>
-                <span className="label">
-                  Age:
-                  <span className="info-item">{age}</span>
-                </span>
-              </p>
-              )} */}
               {
                 !!bio && (
                   <p>
