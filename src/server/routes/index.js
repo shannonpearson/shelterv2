@@ -4,6 +4,7 @@ const auth = require('./auth');
 const pets = require('./pets');
 const events = require('./events');
 const blogs = require('./blogs');
+const health = require('./health');
 
 module.exports = {
   donate,
@@ -12,4 +13,5 @@ module.exports = {
   pets,
   events,
   blogs,
+  health,
 };

@@ -24,6 +24,7 @@ app.use('/api/auth', routes.auth);
 app.use('/api/pets', routes.pets);
 app.use('/api/events', routes.events);
 app.use('/api/blogs', routes.blogs);
+app.use('/api/health', routes.health);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
