@@ -6,6 +6,14 @@ const eventSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  location: {
+    type: String,
+    default: '',
+  },
+  address: {
+    type: String,
+    default: '',
+  },
   description: {
     type: String,
     default: '',

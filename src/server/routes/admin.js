@@ -145,10 +145,10 @@ router.delete('/blogs/:id', async (req, res) => {
 router.post('/events', (req, res) => {
   try {
     const {
-      title, description, startDate, endDate,
+      title, description, location, address, startDate, endDate,
     } = req.body.event;
     const newEventObject = {
-      title, description, startDate, endDate,
+      title, description, startDate, endDate, location, address,
     };
     const event = new Event(newEventObject);
 
