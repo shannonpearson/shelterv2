@@ -13,7 +13,7 @@ export default class EventsAdminPage extends PureComponent {
       editIndex: null,
       loading: true,
     };
-    this.tableProperties = ['title', 'description', 'startDate', 'endDate'];
+    this.tableProperties = ['title', 'location', 'address', 'description', 'startDate', 'endDate'];
   }
 
   componentDidMount() {
@@ -57,6 +57,9 @@ export default class EventsAdminPage extends PureComponent {
           <span className="sr-only">Loading...</span>
         </Spinner>
         )}
+        <div className="row button-row">
+          <Button className="new-event-button" onClick={() => this.setState({ showModal: true })}>Add Event</Button>
+        </div>
         <div className="row">
           <AdminTable
             data={events}
@@ -65,9 +68,6 @@ export default class EventsAdminPage extends PureComponent {
             onEdit={this.handleEdit}
             className="events-admin-table"
           />
-        </div>
-        <div className="row button-row">
-          <Button className="new-event-button" onClick={() => this.setState({ showModal: true })}>Add Event</Button>
         </div>
         <Modal
           show={showModal}

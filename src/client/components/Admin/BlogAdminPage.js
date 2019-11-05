@@ -58,6 +58,9 @@ export default class BlogsAdminPage extends PureComponent {
           <span className="sr-only">Loading...</span>
         </Spinner>
         )}
+        <div className="row button-row">
+          <Button className="new-blog-button" onClick={() => this.setState({ showModal: true })}>Create New Post</Button>
+        </div>
         <div className="row">
           <AdminTable
             data={blogs}
@@ -66,9 +69,6 @@ export default class BlogsAdminPage extends PureComponent {
             onEdit={this.handleEdit}
             className="blog-admin-table"
           />
-        </div>
-        <div className="row button-row">
-          <Button className="new-blog-button" onClick={() => this.setState({ showModal: true })}>Create New Post</Button>
         </div>
         <Modal
           show={showModal}

@@ -59,6 +59,9 @@ export default class AdminPage extends PureComponent {
           <span className="sr-only">Loading...</span>
         </Spinner>
         )}
+        <div className="row button-row">
+          <Button className="new-pet-button" onClick={() => this.setState({ showModal: true })}>Add Pet</Button>
+        </div>
         <div className="row">
           <AdminTable
             data={allPets}
@@ -67,9 +70,6 @@ export default class AdminPage extends PureComponent {
             onEdit={this.handleEdit}
             className="pets-admin-table"
           />
-        </div>
-        <div className="row button-row">
-          <Button className="new-pet-button" onClick={() => this.setState({ showModal: true })}>Add Pet</Button>
         </div>
         <Modal
           show={showModal}

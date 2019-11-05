@@ -8,6 +8,8 @@ import { Button } from 'react-bootstrap';
 const initialValues = {
   title: '',
   description: '',
+  location: '',
+  address: '',
 };
 
 export default class EventForm extends PureComponent {
@@ -45,6 +47,7 @@ export default class EventForm extends PureComponent {
     const { onSave, onSaveEdit, eventToEdit } = this.props;
     const { startDate, endDate } = this.state;
     const eventObject = { ...values, startDate, endDate };
+    console.log(eventObject);
     if (eventToEdit) {
       return onSaveEdit({ ...eventObject }).then(() => {
         actions.setSubmitting(false);
@@ -74,6 +77,26 @@ export default class EventForm extends PureComponent {
               onBlur={props.handleBlur}
               value={props.values.title}
               name="title"
+            />
+            <div className="label-text">
+              Location (name)
+            </div>
+            <input
+              type="text"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.location}
+              name="location"
+            />
+            <div className="label-text">
+              Address
+            </div>
+            <input
+              type="text"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.address}
+              name="address"
             />
             <div className="label-text">
                 Description
