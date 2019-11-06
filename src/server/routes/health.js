@@ -4,8 +4,7 @@ const router = Router();
 
 router.get('/', (req, res) => {
   try {
-    console.log('health');
-    return res.sendStatus(200);
+    return res.sendStatus(204);
   } catch (err) {
     return res.sendStatus(400);
   }
