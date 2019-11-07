@@ -41,7 +41,7 @@ const Checkout = ({
     closed={closed}
     className={className}
     currency={CURRENCY}
-    stripeKey="pk_test_B53wtYSwYahl6uN31pH9pyZ2"
+    stripeKey="pk_test_Mh4PYIH9Cq3x5DQT9wT6aMEL"
   />
 );
 
