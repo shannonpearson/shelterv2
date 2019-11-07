@@ -17,27 +17,41 @@ function Donate() {
     <div className="container donate-container">
       <div className="row donate-intro">
         Thank you so much for considering a donation to the East Haven Animal Shelter. Your
-        donations ehable us to provide the best medical care to our sick or injured animals, giving
+        donations enable us to provide the best medical care to our sick or injured animals, giving
         them a second chance at finding a forever home.
       </div>
-      <div className="row donation-row">
-        <Form className="donation-form">
-          <Form.Group>
-            <Form.Label> Donation Amount: </Form.Label>
-            <CurrencyInput
-              value={amount}
-              onChangeEvent={handleAmountChange}
-              prefix="$"
-              className="form-control"
-            />
-          </Form.Group>
-        </Form>
-        <Checkout
-          amount={amount}
-          description="Donation - East Haven Animal Shelter"
-          closed={() => setAmount(0)}
-          className="checkout"
-        />
+      <div className="row donation-row d-flex justify-content-around">
+        <div className="col-12 col-sm-6 col-md-4 donate-form-container">
+          <Form className="donation-form">
+            <Form.Group>
+              <Form.Label className={'heading-label'}> Donate via card with Stripe</Form.Label>
+              <Form.Label> Amount: </Form.Label>
+              <CurrencyInput
+                value={amount}
+                onChangeEvent={handleAmountChange}
+                prefix="$"
+                className="form-control currency-form"
+              />
+            </Form.Group>
+          </Form>
+          <Checkout
+            amount={amount}
+            description="Donation - East Haven Animal Shelter"
+            closed={() => setAmount(0)}
+            className="checkout"
+          />
+        </div>
+
+        <div className={'paypal-button-container donate-form-container col-12 col-sm-6 col-md-4'}>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <Form.Label className={'heading-label'}>Donate with PayPal</Form.Label>
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="8CKTFN24XTER2" />
+            <input className="paypal-button" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+          </form>
+        </div>
+
       </div>
       <div className="row donations-info-row">
         <h4>Where will my donations go?</h4>

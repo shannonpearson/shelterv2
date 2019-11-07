@@ -25,10 +25,36 @@
   }
 
   .donation-row {
-    margin: 30px auto 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 10% 30px;
+  }
+
+  .currency-form {
+    max-width: 150px;
+  }
+  .donate-form-container {
+    background-color: $backgroundGrey;
+    height: 180px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    .paypal-button {
+      margin-top: 20px;
+    }
+    .heading-label {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .form-group, form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
