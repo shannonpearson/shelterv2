@@ -21,7 +21,7 @@ router.post('/stripe', async (req, res) => {
       },
       (err, charge) => {
         if (err) {
-          res.status(400).send({ message: 'charge error', err });
+          res.status(400).send({ message: 'charge error', err, key: process.env.STRIPE_SECRET_KEY });
         } else {
           res.status(200).send({ message: 'charge success!', charge, key: process.env.STRIPE_SECRET_KEY });
         }
