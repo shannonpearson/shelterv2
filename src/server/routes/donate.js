@@ -9,8 +9,7 @@ router.post('/stripe', async (req, res) => {
     const {
       description, source, currency, amount, email,
     } = req.body;
-    const stripeSecretKey = 'sk_test_e35zPWZE5mjOCOArG9amIpfw';
-    const stripe = Stripe(stripeSecretKey);
+    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
     stripe.charges.create(
       {
         amount,
