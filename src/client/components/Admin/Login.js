@@ -2,15 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { unauthenticatedFetch } from '../../utils/fetchUtils';
+import { setToken } from '../../utils/authUtils';
 
 class Login extends PureComponent {
   static propTypes = {
     onSuccess: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     onSuccess: () => {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -24,24 +25,26 @@ class Login extends PureComponent {
   handleChange = (event) => {
     const { id, value } = event.target;
     this.setState({ [id]: value });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { username, password } = this.state;
     const { onSuccess } = this.props;
-    return unauthenticatedFetch('/auth/login', { method: 'POST', body: { username, password } })
-      .then(({ success, token, message }) => {
-        if (success && token) {
-          window.localStorage.setItem('id_token', token);
-          return onSuccess();
-        }
-        if (!success && message) {
-          return this.setState({ errorMessage: `Error logging in: ${message}` });
-        }
-        return this.setState({ errorMessage: 'Invalid username or password' });
-      });
-  }
+    return unauthenticatedFetch('/auth/login', {
+      method: 'POST',
+      body: { username, password },
+    }).then(({ success, token, message }) => {
+      if (success && token) {
+        setToken(token);
+        return onSuccess();
+      }
+      if (!success && message) {
+        return this.setState({ errorMessage: `Error logging in: ${message}` });
+      }
+      return this.setState({ errorMessage: 'Invalid username or password' });
+    });
+  };
 
   render() {
     const { username, password, errorMessage } = this.state;
@@ -60,7 +63,7 @@ class Login extends PureComponent {
             <Form.Label>Password:</Form.Label>
             <Form.Control
               id="password"
-              type="text"
+              type="password"
               value={password}
               placeholder="Enter text"
               onChange={this.handleChange}
@@ -69,7 +72,9 @@ class Login extends PureComponent {
               <div className="error-message">{errorMessage}</div>
             ) : null}
           </Form.Group>
-          <Button className="col-sm-2" type="submit">Log in</Button>
+          <Button className="col-sm-2" type="submit">
+            Log in
+          </Button>
         </Form>
       </div>
     );
