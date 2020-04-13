@@ -8,7 +8,11 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const AdminTable = (props) => {
   const {
-    tableProperties, className, onEdit, data, onDelete,
+    tableProperties = [],
+    className = '',
+    onEdit,
+    data = [],
+    onDelete,
   } = props;
 
   const handleDelete = (id, i) => {
@@ -23,28 +27,41 @@ const AdminTable = (props) => {
       <tr key={item._id}>
         {tableProperties.map((prop) => {
           let content;
-          if (prop === 'image' && item[prop]) {
-            const image = `data:image/jpeg;base64,${item.image}`;
-            content = <img src={image} width="80px" alt="thumbnail" />;
-          } else if ((prop.toLowerCase().endsWith('date') || prop === 'createdOn') && item[prop]) {
-            const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
-            content = date;
-          } else if (item[prop][0] === '<') {
-            content = <div className="html-content" dangerouslySetInnerHTML={{ __html: item[prop] }} />;
-          } else {
-            content = item[prop];
+          if (item[prop]) {
+            if (prop === 'image') {
+              const image = `data:image/jpeg;base64,${item.image}`;
+              content = <img src={image} width="80px" alt="thumbnail" />;
+            } else if (
+              prop.toLowerCase().endsWith('date') ||
+              prop === 'createdOn'
+            ) {
+              const date = format(new Date(item[prop]), 'MMM do, yyyy h:mm aa');
+              content = date;
+            } else if (item[prop][0] === '<') {
+              content = (
+                <div
+                  className="html-content"
+                  dangerouslySetInnerHTML={{ __html: item[prop] }}
+                />
+              );
+            } else {
+              content = item[prop];
+            }
           }
           return (
             <td key={`${item._id}-${prop}`}>
-              <div className="table-content">
-                {content || ''}
-              </div>
+              <div className="table-content">{content || ''}</div>
             </td>
           );
         })}
         <td>
-          <Button className="action-button" onClick={() => onEdit(i)}><FontAwesomeIcon icon={faEdit} /></Button>
-          <Button className="action-button" onClick={() => handleDelete(item._id, i)}>
+          <Button className="action-button" onClick={() => onEdit(i)}>
+            <FontAwesomeIcon icon={faEdit} />
+          </Button>
+          <Button
+            className="action-button"
+            onClick={() => handleDelete(item._id, i)}
+          >
             <FontAwesomeIcon icon={faTrash} />
           </Button>
         </td>
@@ -57,14 +74,13 @@ const AdminTable = (props) => {
       <Table bordered>
         <thead>
           <tr>
-            {tableProperties
-              .map((columnName) => <th key={columnName}>{columnName.toUpperCase()}</th>)}
+            {tableProperties.map((columnName) => (
+              <th key={columnName}>{columnName.toUpperCase()}</th>
+            ))}
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {_renderTableRows()}
-        </tbody>
+        <tbody>{_renderTableRows()}</tbody>
       </Table>
     </div>
   );
