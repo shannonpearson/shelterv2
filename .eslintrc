@@ -7,13 +7,14 @@
     "jest": true,
     "es6": true
   },
-  "plugins": ["jest", "import",  "react", "react-hooks"],
+  "plugins": ["jest", "import", "react", "react-hooks"],
   "rules": {
     "semi": ["error", "always"],
     "no-underscore-dangle": "off",
     "react/jsx-filename-extension": "off",
     "react/static-property-placement": "off",
     "react/forbid-prop-types": "off",
-    "react/destructuring-assignment": "off"
-  },
+    "react/destructuring-assignment": "off",
+    "linebreak-style": "off"
+  }
 }
