@@ -16,10 +16,10 @@
     }
   }
   .svg-inline--fa.fa-w-18 {
-    width: .9em;
+    width: 0.9em;
   }
   .svg-inline--fa.fa-w-14 {
-    width: .7em;
+    width: 0.7em;
   }
   button {
     padding: 4px 10px;
@@ -121,7 +121,8 @@
 }
 
 .admin-modal {
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding-left: 5px;
     padding-right: 5px;
@@ -133,6 +134,14 @@
   button {
     background-color: #3d8bdb;
     border-color: #2c80d4;
+  }
+}
+
+.admin-wrapper {
+  .logout-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 }
 
