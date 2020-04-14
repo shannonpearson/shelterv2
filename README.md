@@ -6,6 +6,7 @@
 ``` nodemon server.js```
 
 in a separate terminal:
+
 ``` node dev-server.js ```
 
 #### build
