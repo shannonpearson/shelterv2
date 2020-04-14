@@ -3,6 +3,7 @@
 ### local start with hot reloading
 
 ``` npm install ```
+
 ``` nodemon server.js```
 
 in a separate terminal:
