@@ -6,7 +6,9 @@ import AdminTabsComponent from './AdminTabsComponent';
 const AdminWrapper = () => {
   return (
     <div className="admin-wrapper">
-      <Button onClick={logout}>Logout</Button>
+      <div className="logout-button-container col-12">
+        <Button onClick={logout}>Logout</Button>
+      </div>
       <AdminTabsComponent />
     </div>
   );
