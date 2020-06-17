@@ -10,11 +10,15 @@ const BlogList = (props) => {
       <div className="row blogs-page-title">
         <h4>Recent Posts</h4>
       </div>
-      {blogs.map((blog, i) => <BlogEntryDisplay key={`blog-post-${blog.title}`} blog={blog} index={i} />)}
+      {blogs.map((blog) => (
+        <BlogEntryDisplay key={`blog-post-${blog.title}`} blog={blog} />
+      ))}
       {!hideLoadMore && (
-      <div className="row button-row">
-        <Button className="load-more-blogs-button" onClick={onLoadMore}>Load More</Button>
-      </div>
+        <div className="row button-row">
+          <Button className="load-more-blogs-button" onClick={onLoadMore}>
+            Load More
+          </Button>
+        </div>
       )}
     </div>
   );

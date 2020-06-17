@@ -9,7 +9,9 @@ const EventList = (props) => {
       <div className="row blogs-page-title">
         <h4>Upcoming Events</h4>
       </div>
-      {events.map((event, i) => <EventDisplay key={event._id} event={event} index={i} />)}
+      {events.map((event) => (
+        <EventDisplay key={event._id} event={event} />
+      ))}
     </div>
   );
 };

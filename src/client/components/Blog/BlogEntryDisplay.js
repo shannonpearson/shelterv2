@@ -1,65 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Accordion, Carousel } from 'react-bootstrap';
+import { Card, Carousel } from 'react-bootstrap';
 import { format } from 'date-fns';
 
-
 const BlogEntryDisplay = (props) => {
-  const {
-    blog: {
-      title, body, createdOn, images = [],
-    } = {},
-    index,
-  } = props;
-  const date = createdOn ? format(new Date(createdOn), 'MMM do, yyyy h:mm aa') : null;
-  const defaultActiveKey = index === 0 ? 0 : null;
+  // eslint-disable-next-line object-curly-newline
+  const { blog: { title, body, createdOn, images = [] } = {} } = props;
+  const date = createdOn
+    ? format(new Date(createdOn), 'MMM do, yyyy h:mm aa')
+    : null;
 
   return (
-    <Accordion className="blog-accordion" defaultActiveKey={defaultActiveKey}>
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey={index} onClick={() => { console.log('click'); }}>
-          <h4 className="blog-title">
-            {title}
-          </h4>
-          <div className="blog-date">
-            Posted by East Haven Animal Shelter
-            {date ? ` on ${date}` : ''}
+    <Card>
+      <Card.Header>
+        <h4 className="blog-title col-12">{title}</h4>
+        <div className="blog-date col-12">
+          Posted by East Haven Animal Shelter
+          {date ? ` on ${date}` : ''}
+        </div>
+      </Card.Header>
+      <Card.Body>
+        {images && images.length ? (
+          <div className="carousel-container">
+            <Carousel>
+              {images.map((image) => (
+                <Carousel.Item key={image.slice(-10)}>
+                  <img
+                    className="d-block"
+                    src={`data:image/jpeg;base64,${image}`}
+                    alt="First slide"
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
           </div>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={index}>
-          <Card.Body>
-            {images && images.length ? (
-              <div className="carousel-container">
-                <Carousel>
-                  {images.map((image) => (
-                    <Carousel.Item key={image.slice(-10)}>
-                      <img
-                        className="d-block"
-                        src={`data:image/jpeg;base64,${image}`}
-                        alt="First slide"
-                      />
-                    </Carousel.Item>
-                  ))}
-                </Carousel>
-              </div>
-            ) : null}
-            <div className="html-content" dangerouslySetInnerHTML={{ __html: body }} />
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+        ) : null}
+        <div
+          className="html-content"
+          dangerouslySetInnerHTML={{ __html: body }}
+        />
+      </Card.Body>
+    </Card>
   );
 };
 
-
 BlogEntryDisplay.propTypes = {
   blog: PropTypes.object,
-  index: PropTypes.number,
 };
 
 BlogEntryDisplay.defaultProps = {
   blog: {},
-  index: null,
 };
 
 export default BlogEntryDisplay;
