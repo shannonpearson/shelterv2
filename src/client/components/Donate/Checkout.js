@@ -16,22 +16,21 @@ const errorPayment = () => {
   alert('Payment Error');
 };
 
-const onToken = (amount, description) => (token) => unauthenticatedFetch('/donate/stripe', {
-  method: 'POST',
-  body: {
-    description,
-    source: token.id,
-    currency: CURRENCY,
-    amount: fromDollarToCent(amount),
-    email: token.email,
-  },
-})
-  .then(successPayment)
-  .catch(errorPayment);
+const onToken = (amount, description) => (token) =>
+  unauthenticatedFetch('/donate/stripe', {
+    method: 'POST',
+    body: {
+      description,
+      source: token.id,
+      currency: CURRENCY,
+      amount: fromDollarToCent(amount),
+      email: token.email,
+    },
+  })
+    .then(successPayment)
+    .catch(errorPayment);
 
-const Checkout = ({
-  amount, description, closed, className,
-}) => (
+const Checkout = ({ amount, description, closed, className }) => (
   <StripeCheckout
     name="East Haven Animal Shelter"
     description={description}
@@ -42,6 +41,7 @@ const Checkout = ({
     className={className}
     currency={CURRENCY}
     stripeKey="pk_live_d4UnYyBWLDBenLC7wAJIlawN"
+    zipCode
   />
 );
 
