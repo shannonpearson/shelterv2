@@ -34,7 +34,7 @@
     "jquery": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "parcel-plugin-static-files-copy": "^2.3.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
